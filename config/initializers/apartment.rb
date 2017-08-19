@@ -63,5 +63,6 @@ end
 #   request.host.split('.').first
 # }
 
+# Rails.application.config.middleware.use 'MyCustomElevator'
 Rails.application.config.middleware.use 'Apartment::Elevators::Domain'
 # Rails.application.config.middleware.use 'Apartment::Elevators::Subdomain'

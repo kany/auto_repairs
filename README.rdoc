@@ -28,7 +28,7 @@ It uses the domain name to determine which automobile company's brand to present
     bundle exec rake db:migrate
     bundle exec rake db:seed
 
-== Instructions for the Domain example
+== Instructions for a Domain example
 
 # Update /etc/hosts by adding these two lines
     127.0.0.1    www.audiservice.com
@@ -38,6 +38,26 @@ It uses the domain name to determine which automobile company's brand to present
     rails s -p 3000
     visit www.audiservice.com:3000
     visit www.teslaservice.com:3000
+
+== Instructions for a Generic example
+
+# Update config/initializers/apartment.rb
+    # uncomment these two lines
+    require 'apartment/elevators/generic'
+    Rails.application.config.middleware.use 'MyCustomElevator'
+
+    # comment out these two lines
+    require 'apartment/elevators/domain'
+    Rails.application.config.middleware.use 'Apartment::Elevators::Domain'
+
+# Uncomment this line in config/routes.rb
+    match '*path' => 'customers#new', via: :get
+
+# Try it out
+    rails s -p 3000
+    visit localhost:3000/teslaservice
+    visit localhost:3000/audiservice
+
 
 
 
