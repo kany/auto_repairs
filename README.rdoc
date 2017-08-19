@@ -5,3 +5,39 @@ This is a sample multitenant app using the apartment gem in Ruby on Rails 4.2.5.
 This app lets people make an appointment at their automobile company's service shop.
 
 It uses the domain name to determine which automobile company's brand to present.
+
+== Intructions
+
+# Clone the repo
+    git clone https://github.com/kany/auto_repairs
+    echo 'rvm use 2.3.4@auto_repairs' >> auto_repairs/.rvmrc
+    cd auto_repairs
+
+# Add ENV variables for database.yml to ~/.bashrc
+    echo "export AUTO_REPAIRS_DATABASE_USERNAME='your-db-username'" >> ~/.bashrc
+    echo "export AUTO_REPAIRS_DATABASE_PASSWORD='your-db-password'" >> ~/.bashrc
+
+# Update the default config in config/database.yml by adding these two lines
+    username: <%= ENV['AUTO_REPAIRS_DATABASE_USERNAME'] %>
+    password: <%= ENV['AUTO_REPAIRS_DATABASE_PASSWORD'] %>
+
+# Bundle
+    gem install bundler
+    bundle install
+    bundle exec rake db:create
+    bundle exec rake db:migrate
+    bundle exec rake db:seed
+
+== Instructions for the Domain example
+
+# Update /etc/hosts by adding these two lines
+    127.0.0.1    www.audiservice.com
+    127.0.0.1    www.teslaservice.com
+
+# Try it out
+    rails s -p 3000
+    visit www.audiservice.com:3000
+    visit www.teslaservice.com:3000
+
+
+
