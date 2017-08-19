@@ -16,6 +16,7 @@ It uses the domain name to determine which automobile company's brand to present
 # Add ENV variables for database.yml to ~/.bashrc
     echo "export AUTO_REPAIRS_DATABASE_USERNAME='your-db-username'" >> ~/.bashrc
     echo "export AUTO_REPAIRS_DATABASE_PASSWORD='your-db-password'" >> ~/.bashrc
+    source ~/.bashrc
 
 # Update the default config in config/database.yml by adding these two lines
     username: <%= ENV['AUTO_REPAIRS_DATABASE_USERNAME'] %>
